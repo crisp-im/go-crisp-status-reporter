@@ -16,7 +16,7 @@ func main() {
   // 1. Create Crisp Status Reporter
   builder := Reporter.New("REPLACE_THIS_WITH_A_SECRET_KEY")
 
-  reporter := builder.ProbeID("relay").NodeID("socket-client").ReplicaID("192.168.1.10").Interval(time.Duration(30 * time.Second)).Build()
+  reporter := builder.ServiceID("d657b4c1-dd07-4f94-ac7a-d4c3b4b219c1").NodeID("5eca824b-4134-4126-982d-2c2338ecf3ab").ReplicaID("192.168.1.10").Interval(time.Duration(30 * time.Second)).Build()
 
   // 2. Run Crisp Status Reporter
   reporter.Run()

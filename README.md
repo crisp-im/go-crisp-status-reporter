@@ -21,11 +21,11 @@ import (
 // Build reporter
 builder := Reporter.New("YOUR_TOKEN_SECRET")
 
-// Probe ID containing the parent Node for Replica
-// Node ID containing Replica
+// Service ID containing the parent Node for Replica (given by Crisp)
+// Node ID containing Replica (given by Crisp)
 // Unique Replica ID for instance (ie. your IP on the LAN)
 // Reporting interval (in seconds; defaults to 30 seconds if not set)
-reporter := builder.ProbeID("relay").NodeID("socket-client").ReplicaID("192.168.1.10").Interval(time.Duration(30 * time.Second)).Build()
+reporter := builder.ServiceID("YOUR_SERVICE_ID").NodeID("YOUR_NODE_ID").ReplicaID("192.168.1.10").Interval(time.Duration(30 * time.Second)).Build()
 
 // Run reporter (starts reporting)
 reporter.Run()

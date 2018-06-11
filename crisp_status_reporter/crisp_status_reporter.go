@@ -22,7 +22,7 @@ import (
 
 
 const (
-  libraryVersion = "1.0.1"
+  libraryVersion = "1.1.0"
   reportURL = "https://report.crisp.watch/v1"
   userAgent = "go-crisp-status-reporter/" + libraryVersion
   acceptContentType = "application/json"
@@ -31,7 +31,7 @@ const (
 
 
 type ReporterBuilder interface {
-  ProbeID(string) ReporterBuilder
+  ServiceID(string) ReporterBuilder
   NodeID(string) ReporterBuilder
   ReplicaID(string) ReporterBuilder
   Interval(time.Duration) ReporterBuilder
@@ -40,7 +40,7 @@ type ReporterBuilder interface {
 
 type reporterBuilder struct {
   token string
-  probeID *string
+  serviceID *string
   nodeID *string
   replicaID *string
   interval *time.Duration
@@ -72,8 +72,8 @@ type reporterPayloadLoad struct {
 }
 
 
-func (builder *reporterBuilder) ProbeID(probeID string) ReporterBuilder {
-  builder.probeID = &probeID
+func (builder *reporterBuilder) ServiceID(serviceID string) ReporterBuilder {
+  builder.serviceID = &serviceID
 
   return builder
 }
@@ -97,8 +97,8 @@ func (builder *reporterBuilder) Interval(interval time.Duration) ReporterBuilder
 }
 
 func (builder *reporterBuilder) Build() Reporter {
-  if builder.probeID == nil || *builder.probeID == "" {
-    panic("missing probeID")
+  if builder.serviceID == nil || *builder.serviceID == "" {
+    panic("missing serviceID")
   }
   if builder.nodeID == nil || *builder.nodeID == "" {
     panic("missing nodeID")
@@ -107,7 +107,7 @@ func (builder *reporterBuilder) Build() Reporter {
     panic("missing replicaID")
   }
 
-  reportURL := fmt.Sprintf("%s/%s/%s/", reportURL, url.QueryEscape(*builder.probeID), url.QueryEscape(*builder.nodeID))
+  reportURL := fmt.Sprintf("%s/%s/%s/", reportURL, url.QueryEscape(*builder.serviceID), url.QueryEscape(*builder.nodeID))
 
   interval := time.Duration(30 * time.Second)
 
