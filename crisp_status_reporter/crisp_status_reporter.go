@@ -22,7 +22,7 @@ import (
 
 
 const (
-  libraryVersion = "1.1.0"
+  libraryVersion = "1.1.1"
   reportURL = "https://report.crisp.watch/v1"
   userAgent = "go-crisp-status-reporter/" + libraryVersion
   acceptContentType = "application/json"
@@ -61,9 +61,9 @@ type Reporter struct {
 }
 
 type reporterPayload struct {
-  Replica   string               `json:"replica"`
-  Interval  uint64               `json:"interval"`
-  Load      reporterPayloadLoad  `json:"load"`
+  ReplicaID  string               `json:"replica_id"`
+  Interval   uint64               `json:"interval"`
+  Load       reporterPayloadLoad  `json:"load"`
 }
 
 type reporterPayloadLoad struct {
@@ -155,7 +155,7 @@ func (reporter *Reporter) manage() {
 func (reporter *Reporter) report() bool {
   // Generate report payload
   payload := reporterPayload {
-    Replica: reporter.replicaID,
+    ReplicaID: reporter.replicaID,
     Interval: uint64(reporter.interval.Seconds()),
     Load: reporterPayloadLoad {
       CPU: reporter.getLoadCPU(),
