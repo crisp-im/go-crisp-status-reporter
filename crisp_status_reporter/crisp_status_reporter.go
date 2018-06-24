@@ -22,7 +22,7 @@ import (
 
 
 const (
-  libraryVersion = "1.1.1"
+  libraryVersion = "1.1.2"
   reportURL = "https://report.crisp.watch/v1"
   userAgent = "go-crisp-status-reporter/" + libraryVersion
   acceptContentType = "application/json"
@@ -107,7 +107,7 @@ func (builder *reporterBuilder) Build() Reporter {
     panic("missing replicaID")
   }
 
-  reportURL := fmt.Sprintf("%s/%s/%s/", reportURL, url.QueryEscape(*builder.serviceID), url.QueryEscape(*builder.nodeID))
+  reportURL := fmt.Sprintf("%s/report/%s/%s/", reportURL, url.QueryEscape(*builder.serviceID), url.QueryEscape(*builder.nodeID))
 
   interval := time.Duration(30 * time.Second)
 
