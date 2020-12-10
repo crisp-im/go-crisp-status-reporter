@@ -1,6 +1,6 @@
 # go-crisp-status-reporter
 
-[![Build Status](https://img.shields.io/travis/crisp-im/go-crisp-status-reporter/master.svg)](https://travis-ci.org/crisp-im/go-crisp-status-reporter)
+[![Test and Build](https://github.com/crisp-im/go-crisp-status-reporter/workflows/Test%20and%20Build/badge.svg?branch=master)](https://github.com/crisp-im/go-crisp-status-reporter/actions?query=workflow%3A%22Test+and+Build%22)
 
 **Crisp Status Reporter for Golang.**
 
